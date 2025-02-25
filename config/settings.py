@@ -141,6 +141,16 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Jazzmin settings
+JAZZMIN_SETTINGS = {
+    "site_title": "E-Commerce Platform",
+    "site_header": "E-Commerce Platform",
+    "site_brand": "E-Commerce Platform",
+    "welcome_sign": "Welcome to E-Commerce Platform",
+    "copyright": "Abhishek 2025",
+    "show_sidebar": True,
+    "show_ui_builder": True,
+}
+
 JAZZMIN_UI_TWEAKS = {
     "navbar_small_text": False,
     "footer_small_text": False,
