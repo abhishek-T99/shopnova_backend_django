@@ -3,11 +3,27 @@ line-length = 120
 target-version = ['py310', 'py311', 'py312']
 exclude = '''
 (
-    /migrations/.*|
-    /env|
-    /venv|
-    /.venv|
-    /__pycache__|
-    /.git
+    /migrations/.*
+    | /env
+    | /venv
+    | /.venv
+    | /__pycache__
+    | /.git
 )
 '''
+
+[tool.isort]
+profile = "django"
+skip = [
+    "*/migrations/*",
+    "env/",
+    "venv/",
+    ".venv/",
+    "__pycache__/",
+    ".git/",
+]
+combine_as_imports = true
+include_trailing_comma = true
+line_length = 120
+multi_line_output = 3
+known_first_party = ["config"]
