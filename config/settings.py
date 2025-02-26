@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     # Third party apps
     "jazzmin",
     "drf_yasg",
+    # Default
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -140,6 +141,9 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 # Media files (Images, Videos)
 MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
+
+# Auth user model
+AUTH_USER_MODEL = "userauths.User"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
