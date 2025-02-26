@@ -6,6 +6,7 @@ from userauths.models import Profile, User
 class UserAdmin(admin.ModelAdmin):
     search_fields = ["full_name", "username", "email", "phone"]
     list_display = ["username", "email", "phone"]
+    exclude = ["password"]
 
 
 class ProfileAdmin(admin.ModelAdmin):
