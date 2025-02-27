@@ -5,12 +5,13 @@ cfgv==3.4.0
 click==8.1.8
 decorator==5.2.1
 distlib==0.3.9
-Django==4.2.1
+Django==4.2.15
 django-cors-headers==3.14.0
 django-jazzmin==2.6.0
 djangorestframework==3.15.2
 djangorestframework-simplejwt==5.2.2
 drf-yasg==1.21.7
+environs==10.0.0
 executing==2.2.0
 filelock==3.17.0
 flake8==7.1.2
