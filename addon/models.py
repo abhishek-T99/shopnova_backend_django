@@ -1,5 +1,4 @@
 from django.db import models
-from shortuuid.django_fields import ShortUUIDField
 
 SERVICE_FEE_CHARGE_TYPE = (
     ("percentage", "Percentage"),
