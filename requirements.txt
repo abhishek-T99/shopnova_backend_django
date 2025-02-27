@@ -50,3 +50,4 @@ virtualenv==20.29.2
 wcwidth==0.2.13
 wheel==0.45.1
 Pillow
+django-import-export

@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     "vendor",
     "customer",
     "api",
+    "addon",
     # Third party apps
     "rest_framework",
     "rest_framework_simplejwt.token_blacklist",
