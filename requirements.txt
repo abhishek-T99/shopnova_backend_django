@@ -49,5 +49,7 @@ uritemplate==4.1.1
 virtualenv==20.29.2
 wcwidth==0.2.13
 wheel==0.45.1
+requests==2.31.0
+stripe==7.9.0
 Pillow
 django-import-export
