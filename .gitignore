@@ -1,6 +1,11 @@
 # Ignore TODO.md (case-sensitive)
 TODO.md
 
+# static and media
+media/*
+static/*
+staticfiles/*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

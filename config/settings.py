@@ -31,13 +31,9 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DEBUG", default=True)
 
-ALLOWED_HOSTS = [
-    "127.0.0.1",
-    "localhost",
-]
-
-CORS_ALLOW_ALL_ORIGINS = True
-
+ALLOWED_HOSTS = ["website-domain.com", "127.0.0.1", "localhost"]
+CSRF_TRUSTED_ORIGINS = ["https://website-domain.com", "https://127.0.0.1"]
+SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin-allow-popups"
 
 # Application definition
 
@@ -66,6 +62,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -73,8 +70,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    # Third party middleware
-    "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -138,6 +133,10 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 
 USE_TZ = True
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5000",
+]
 
 
 # Static files (CSS, JavaScript, Images)
