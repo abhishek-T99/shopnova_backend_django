@@ -5,13 +5,15 @@ from store import views as store_views
 from userauths import views as userauths_views
 
 urlpatterns = [
-    # User auth views
+    # User API endpoints
     path("user/token/", userauths_views.MyTokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("user/token/refresh/", TokenRefreshView.as_view(), name="token"),
     path("user/register/", userauths_views.RegisterView.as_view(), name="auth_register"),
     path("user/password-reset/<str:email>/", userauths_views.PasswordEmailVerify.as_view(), name="password_reset"),
     path("user/password-change/", userauths_views.PasswordChangeView.as_view(), name="password_change"),
-    # Store views
+    # Addons API endpoints
+    path("addon/", store_views.ConfigSettingsDetailView.as_view(), name="addons"),
+    # Store API endpoints
     path("category/", store_views.CategoryListView.as_view(), name="category"),
     path("brand/", store_views.BrandListView.as_view(), name="brand"),
     path("products/", store_views.ProductListView.as_view(), name="products"),
