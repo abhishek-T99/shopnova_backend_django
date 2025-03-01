@@ -1,4 +1,3 @@
-from django import forms
 from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin
 
@@ -21,7 +20,6 @@ from store.models import (
     Size,
     Specification,
     Tag,
-    Vendor,
     Wishlist,
 )
 
@@ -65,14 +63,6 @@ class CouponUsersInlineAdmin(admin.TabularInline):
     model = CouponUsers
 
 
-class ProductAdminForm(forms.ModelForm):
-    class Meta:
-        model = Product
-        fields = "__all__"
-
-    vendor = forms.ModelChoiceField(queryset=Vendor.objects.filter(user__is_staff=True))
-
-
 class ProductAdmin(ImportExportModelAdmin):
     inlines = [ProductImagesAdmin, SpecificationAdmin, ColorAdmin, SizeAdmin]
     search_fields = ["title", "price", "slug"]
@@ -97,7 +87,6 @@ class ProductAdmin(ImportExportModelAdmin):
     actions = [make_published, make_in_review, make_featured]
     list_per_page = 100
     prepopulated_fields = {"slug": ("title",)}
-    form = ProductAdminForm
 
 
 class CartAdmin(ImportExportModelAdmin):
