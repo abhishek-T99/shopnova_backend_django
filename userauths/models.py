@@ -58,9 +58,14 @@ class User(AbstractUser):
             self.username = email_username
         super(User, self).save(*args, **kwargs)
 
+    def get_profile_picture(self):
+        if hasattr(self, "profile") and self.profile.image:
+            return self.profile.image.url
+        return None
+
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
     image = models.ImageField(upload_to="accounts/users", default="default/default-user.jpg", null=True, blank=True)
     full_name = models.CharField(max_length=1000, null=True, blank=True)
     about = models.TextField(null=True, blank=True)
