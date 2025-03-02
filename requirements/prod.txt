@@ -1,0 +1,5 @@
+-r base.txt
+
+boto3==1.20.26
+botocore==1.23.54
+s3transfer==0.5.2
