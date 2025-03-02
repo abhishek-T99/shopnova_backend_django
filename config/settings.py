@@ -203,7 +203,7 @@ SENDER_EMAIL = env("SENDER_EMAIL")
 
 # CORS allowed origins
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5000",
+    SITE_URL,
 ]
 
 
