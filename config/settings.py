@@ -174,7 +174,7 @@ ANYMAIL = {
     "SENDINBLUE_API_KEY": env("BREVO_API_KEY"),
 }
 
-BREVO_SENDER_EMAIL = env("BREVO_SENDER_EMAIL")
+SENDER_EMAIL = env("SENDER_EMAIL")
 
 
 # Default primary key field type

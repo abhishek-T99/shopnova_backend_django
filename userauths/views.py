@@ -1,6 +1,8 @@
+from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
 from rest_framework import generics, status
-from rest_framework.exceptions import NotFound
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -28,28 +30,35 @@ class PasswordEmailVerify(generics.RetrieveAPIView):
 
     def get_object(self):
         email = self.kwargs["email"]
-
-        try:
-            user = User.objects.get(email=email)
-        except User.DoesNotExist:
-            raise NotFound({"error": "User with this email does not exist."})
+        user = User.objects.get(email=email)
 
         if user:
             user.otp = generate_numeric_otp()
             uidb64 = user.pk
 
+            # Generate a token and include it in the reset link sent via email
             refresh = RefreshToken.for_user(user)
             reset_token = str(refresh.access_token)
 
+            # Store the reset_token in the user model for later verification
             user.reset_token = reset_token
             user.save()
 
             link = f"http://localhost:5000/create-new-password?otp={user.otp}&uidb64={uidb64}&reset_token={reset_token}"
 
-            print(link)
+            merge_data = {
+                "link": link,
+                "username": user.username,
+            }
+            subject = "Password Reset Request"
+            text_body = render_to_string("email/password_reset.txt", merge_data)
+            html_body = render_to_string("email/password_reset.html", merge_data)
 
-            # send Email
-
+            msg = EmailMultiAlternatives(
+                subject=subject, from_email=settings.SENDER_EMAIL, to=[user.email], body=text_body
+            )
+            msg.attach_alternative(html_body, "text/html")
+            msg.send()
         return user
 
 

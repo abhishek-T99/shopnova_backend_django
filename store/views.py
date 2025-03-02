@@ -528,7 +528,7 @@ class PaymentSuccessView(generics.CreateAPIView):
                         html_body = render_to_string("email/customer_order_confirmation.html", merge_data)
 
                         msg = EmailMultiAlternatives(
-                            subject=subject, from_email=settings.BREVO_SENDER_EMAIL, to=[order.email], body=text_body
+                            subject=subject, from_email=settings.SENDER_EMAIL, to=[order.email], body=text_body
                         )
                         msg.attach_alternative(html_body, "text/html")
                         msg.send()
@@ -546,7 +546,7 @@ class PaymentSuccessView(generics.CreateAPIView):
 
                             msg = EmailMultiAlternatives(
                                 subject=subject,
-                                from_email=settings.BREVO_SENDER_EMAIL,
+                                from_email=settings.SENDER_EMAIL,
                                 to=[o.vendor.email],
                                 body=text_body,
                             )
