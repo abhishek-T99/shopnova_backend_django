@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from datetime import timedelta
 from pathlib import Path
 
+import dj_database_url
 from environs import Env
 
 env = Env()
@@ -61,6 +62,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "import_export",
     "anymail",
+    "storages",
 ]
 
 MIDDLEWARE = [
@@ -105,6 +107,9 @@ DATABASES = {
     }
 }
 
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES["default"].update(db_from_env)
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -136,10 +141,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5000",
-]
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -151,6 +152,32 @@ STATIC_ROOT = BASE_DIR / "static"
 # Media files (Images, Videos)
 MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
+
+# AWS Configs
+# AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID")
+
+# AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY")
+
+# AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME")
+
+# AWS_S3_FILE_OVERWRITE = False
+
+# AWS_DEFAULT_ACL = 'public-read'
+
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+# AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+
+# AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+
+# AWS_LOCATION = 'static'
+
+# STATIC_LOCATION = 'static'
+
+# STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
+
 
 # Auth user model
 AUTH_USER_MODEL = "userauths.User"
@@ -169,12 +196,15 @@ REST_FRAMEWORK = {"DEFAULT_AUTHENTICATION_CLASSES": ("rest_framework_simplejwt.a
 
 # Brevo Email Settings
 EMAIL_BACKEND = "anymail.backends.sendinblue.EmailBackend"
-
 ANYMAIL = {
     "SENDINBLUE_API_KEY": env("BREVO_API_KEY"),
 }
-
 SENDER_EMAIL = env("SENDER_EMAIL")
+
+# CORS allowed origins
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5000",
+]
 
 
 # Default primary key field type
