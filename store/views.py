@@ -528,7 +528,7 @@ class PaymentSuccessView(generics.CreateAPIView):
                         html_body = render_to_string("email/customer_order_confirmation.html", merge_data)
 
                         msg = EmailMultiAlternatives(
-                            subject=subject, from_email=settings.FROM_EMAIL, to=[order.email], body=text_body
+                            subject=subject, from_email=settings.BREVO_SENDER_EMAIL, to=[order.email], body=text_body
                         )
                         msg.attach_alternative(html_body, "text/html")
                         msg.send()
@@ -545,7 +545,10 @@ class PaymentSuccessView(generics.CreateAPIView):
                             html_body = render_to_string("email/vendor_order_sale.html", merge_data)
 
                             msg = EmailMultiAlternatives(
-                                subject=subject, from_email=settings.FROM_EMAIL, to=[o.vendor.email], body=text_body
+                                subject=subject,
+                                from_email=settings.BREVO_SENDER_EMAIL,
+                                to=[o.vendor.email],
+                                body=text_body,
                             )
                             msg.attach_alternative(html_body, "text/html")
                             msg.send()
@@ -567,6 +570,21 @@ class PaymentSuccessView(generics.CreateAPIView):
                         send_notification(user=order.buyer, order=order)
                     for o in order_items:
                         send_notification(vendor=o.vendor, order=order, order_item=o)
+
+                    merge_data = {
+                        "order": order,
+                        "order_items": order_items,
+                    }
+                    subject = "Order Placed Successfully"
+
+                    text_body = render_to_string("email/customer_order_confirmation.txt", merge_data)
+                    html_body = render_to_string("email/customer_order_confirmation.html", merge_data)
+
+                    msg = EmailMultiAlternatives(
+                        subject=subject, from_email=settings.BREVO_SENDER_EMAIL, to=[order.email], body=text_body
+                    )
+                    msg.attach_alternative(html_body, "text/html")
+                    msg.send()
 
                     return Response({"message": "Payment Successfull"}, status=status.HTTP_201_CREATED)
                 else:

@@ -59,6 +59,8 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework_simplejwt.token_blacklist",
     "corsheaders",
+    "import_export",
+    "anymail",
 ]
 
 MIDDLEWARE = [
@@ -154,6 +156,26 @@ MEDIA_ROOT = BASE_DIR / "media"
 AUTH_USER_MODEL = "userauths.User"
 
 SITE_URL = env("SITE_URL")
+
+# Stripe API Keys
+STRIPE_PUBLIC_KEY = env("STRIPE_PUBLIC_KEY")
+STRIPE_SECRET_KEY = env("STRIPE_SECRET_KEY")
+
+# Paypal API Keys
+PAYPAL_CLIENT_ID = env("PAYPAL_CLIENT_ID")
+PAYPAL_SECRET_ID = env("PAYPAL_SECRET_ID")
+
+REST_FRAMEWORK = {"DEFAULT_AUTHENTICATION_CLASSES": ("rest_framework_simplejwt.authentication.JWTAuthentication",)}
+
+# Brevo Email Settings
+EMAIL_BACKEND = "anymail.backends.sendinblue.EmailBackend"
+
+ANYMAIL = {
+    "SENDINBLUE_API_KEY": env("BREVO_API_KEY"),
+}
+
+BREVO_SENDER_EMAIL = env("BREVO_SENDER_EMAIL")
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
