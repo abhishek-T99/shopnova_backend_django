@@ -36,4 +36,6 @@ urlpatterns = [
     path("create-review/", store_views.ReviewRatingAPIView.as_view(), name="create-review"),
     path("reviews/<product_id>/", store_views.ReviewListView.as_view(), name="create-review"),
     path("search/", store_views.SearchProductsAPIView.as_view(), name="search"),
+    path("stripe-checkout/<order_oid>/", store_views.StripeCheckoutView.as_view(), name="stripe-checkout"),
+    path("payment-success/", store_views.PaymentSuccessView.as_view(), name="payment-success"),
 ]
