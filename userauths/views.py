@@ -3,14 +3,36 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from rest_framework import generics, status
+from rest_framework.decorators import api_view
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 from userauths.helpers import generate_numeric_otp
-from userauths.models import User
-from userauths.serializers import MyTokenObtainPairSerializer, RegisterSerializer, UserSerializer
+from userauths.models import Profile, User
+from userauths.serializers import MyTokenObtainPairSerializer, ProfileSerializer, RegisterSerializer, UserSerializer
+
+
+# This is a DRF view defined as a Python function using the @api_view decorator.
+@api_view(["GET"])
+def getRoutes(request):
+    # It defines a list of API routes that can be accessed.
+    routes = ["/api/token/", "/api/register/", "/api/token/refresh/", "/api/test/"]
+    # It returns a DRF Response object containing the list of routes.
+    return Response(routes)
+
+
+class ProfileView(generics.RetrieveAPIView):
+    permission_classes = (AllowAny,)
+    serializer_class = ProfileSerializer
+
+    def get_object(self):
+        user_id = self.kwargs["user_id"]
+
+        user = User.objects.get(id=user_id)
+        profile = Profile.objects.get(user=user)
+        return profile
 
 
 class MyTokenObtainPairView(TokenObtainPairView):
