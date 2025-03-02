@@ -4,7 +4,7 @@ TODO.md
 # static and media
 media/*
 static/*
-staticfiles/*
+staticfiles
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
