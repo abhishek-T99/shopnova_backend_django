@@ -31,7 +31,6 @@ gunicorn==21.2.0
 identify==2.6.8
 idna==3.6
 inflection==0.5.1
-ipdb==0.13.13
 ipython==8.32.0
 isort==6.0.0
 jedi==0.19.2

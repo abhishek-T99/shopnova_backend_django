@@ -1,6 +1,6 @@
 [phases.setup]
 nixPkgs = [
   "gcc",
-  "postgresql_16",
-  "python39"
+  "postgresql_17",
+  "python312"
 ]
