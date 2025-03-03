@@ -1,1 +1,1 @@
-web: uvicorn your_project_name.asgi:application
+web: uvicorn config.asgi:application
