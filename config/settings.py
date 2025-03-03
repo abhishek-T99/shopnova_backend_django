@@ -201,9 +201,7 @@ ANYMAIL = {
 SENDER_EMAIL = env("SENDER_EMAIL")
 
 # CORS allowed origins
-CORS_ALLOWED_ORIGINS = [
-    SITE_URL,
-]
+CORS_ALLOWED_ORIGINS = [SITE_URL, "http://localhost:5000"]
 
 
 # Default primary key field type
