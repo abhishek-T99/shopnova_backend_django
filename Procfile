@@ -1,1 +1,1 @@
-web: uvicorn config.asgi:application
+web: gunicorn config.wsgi:application
