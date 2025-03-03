@@ -75,6 +75,7 @@ typing_extensions==4.9.0
 tzdata==2023.3
 uritemplate==4.1.1
 urllib3==1.26.18
+uvicorn==0.34.0
 virtualenv==20.29.2
 wcwidth==0.2.13
 wheel==0.45.1

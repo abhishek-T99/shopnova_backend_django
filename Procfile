@@ -1,1 +1,1 @@
-web: gunicorn config.asgi --log-file -
+web: uvicorn your_project_name.asgi:application
