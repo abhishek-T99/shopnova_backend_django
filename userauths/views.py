@@ -54,6 +54,8 @@ class PasswordEmailVerify(generics.RetrieveAPIView):
         email = self.kwargs["email"]
         user = User.objects.get(email=email)
 
+        print(user)
+
         if user:
             user.otp = generate_numeric_otp()
             uidb64 = user.pk
@@ -66,7 +68,7 @@ class PasswordEmailVerify(generics.RetrieveAPIView):
             user.reset_token = reset_token
             user.save()
 
-            link = f"{settings.SITE_URL}/create-new-password?otp={user.otp}&={uidb64}&reset_token={reset_token}"
+            link = f"{settings.SITE_URL}/create-new-password?otp={user.otp}&uidb64={uidb64}&reset_token={reset_token}"
 
             merge_data = {
                 "link": link,
