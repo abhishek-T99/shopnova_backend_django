@@ -192,8 +192,8 @@ I welcome contributions from the community! If you'd like to contribute to this 
 2. **Clone the Forked Repository**:
    
    ```bash
-   git clone https://github.com/your-username/ecommerce-application-api.git
-   cd ecommerce-application-api
+   git clone https://github.com/your-username/ecommerce_backend.git
+   cd ecommerce_backend
    ```
 
 3. **Create a New Branch**:
