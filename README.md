@@ -58,32 +58,47 @@ Before setting up the project, ensure you have the following installed:
 
 To run this project, you need to set up the following environment variables. Create a `.env` file in the root directory and add the following:
 
+### Project Settings
+
 `SECRET_KEY=<add your key>`
+
 `ALLOWED_HOSTS=<add your allowed hosts>`
+
 `DEBUG=<True/False>`
 
+### Database
+
+`DATABASE_URL=<add your database URL>`
+
 ### Site URL
+
 `SITE_URL=<add your frontend site URL>`
 
 ### Stripe Payment
+
 `STRIPE_PUBLIC_KEY=<add your stripe public key>`
+
 `STRIPE_SECRET_KEY=<add your stripe secret key>`
 
 ### PayPal Payment
+
 `PAYPAL_CLIENT_ID=<add your paypal client id>`
+
 `PAYPAL_SECRET_ID=<add your paypal secret id>`
 
 ### Email Services
+
 `BREVO_API_KEY=<add your mailgun your API key>`
+
 `BREVO_EMAIL=<add your brevo sender email id>`
 
 ### AWS S3 Storage
-`AWS_ACCESS_KEY_ID=<add your AWS access key id>`
-`AWS_SECRET_ACCESS_KEY=<add your AWS secret access key>`
-`AWS_STORAGE_BUCKET_NAME=<add your AWS bucket name>`
 
-### Database
-`DATABASE_URL=<add your database URL>`
+`AWS_ACCESS_KEY_ID=<add your AWS access key id>`
+
+`AWS_SECRET_ACCESS_KEY=<add your AWS secret access key>`
+
+`AWS_STORAGE_BUCKET_NAME=<add your AWS bucket name>`
 
 ---
 
