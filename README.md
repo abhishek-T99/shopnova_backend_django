@@ -6,6 +6,14 @@ A robust and scalable E-Commerce application backend API built with Django and D
 
 ---
 
+## Site URL: 
+
+```bash
+https://shopnova.up.railway.app
+```
+
+---
+
 ## Features
 
 - Swagger API documentation
