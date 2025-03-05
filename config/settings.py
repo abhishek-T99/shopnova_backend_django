@@ -32,8 +32,8 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DEBUG", default=True)
 
-ALLOWED_HOSTS = ["ecommerce-backend-api.up.railway.app", "127.0.0.1", "localhost"]
-CSRF_TRUSTED_ORIGINS = ["https://ecommerce-backend-api.up.railway.app", "https://127.0.0.1"]
+ALLOWED_HOSTS = ["shopnova.up.railway.app", "127.0.0.1", "localhost"]
+CSRF_TRUSTED_ORIGINS = ["https://shopnova.up.railway.app", "https://127.0.0.1"]
 SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin-allow-popups"
 
 # Application definition
