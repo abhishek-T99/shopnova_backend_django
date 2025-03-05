@@ -74,6 +74,8 @@ To run this project, you need to set up the following environment variables. Cre
 
 `DEBUG=<True/False>`
 
+`CSRF_TRUSTED_ORIGINS=<add your trusted origins>`
+
 ### Database
 
 `DATABASE_URL=<add your database URL>`
@@ -101,6 +103,8 @@ To run this project, you need to set up the following environment variables. Cre
 `BREVO_EMAIL=<add your brevo sender email id>`
 
 ### AWS S3 Storage
+
+`USE_AWS=<True/False>`
 
 `AWS_ACCESS_KEY_ID=<add your AWS access key id>`
 
