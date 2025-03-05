@@ -1,8 +1,8 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/f19950b19e2d4e02b8a57360b8a21b78)](https://app.codacy.com/gh/abhishek-T99/ecommerce_backend/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
-# E-Commerce Application API
+# ShopNova API
 
-A robust and scalable E-Commerce backend API built with Django and Django REST Framework. This project provides a feature-rich E-Commerce platform with support for user authentication, product management, cart and checkout functionality, payment integration, reviews and rating functionality and more.
+A robust and scalable E-Commerce application backend API built with Django and Django REST Framework. This project provides a feature-rich E-Commerce platform with support for user authentication, product management, cart and checkout functionality, payment integration, reviews and rating functionality and more.
 
 ---
 

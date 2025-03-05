@@ -246,11 +246,14 @@ SIMPLE_JWT = {
 
 # Jazzmin settings
 JAZZMIN_SETTINGS = {
-    "site_title": "E-Commerce Platform",
-    "site_header": "E-Commerce Platform",
-    "site_brand": "E-Commerce Platform",
-    "welcome_sign": "Welcome to E-Commerce Platform",
-    "copyright": "Abhishek 2025",
+    "site_title": "ShopNova Admin",
+    "site_header": "ShopNova",
+    "site_brand": "ShopNova",
+    "welcome_sign": "Welcome to ShopNova Admin",
+    "copyright": "ShopNova 2025",
+    # "site_icon": "images/favicon.ico",
+    "site_icon": "images/logos/icon.ico",
+    "site_logo": "images/logos/logo.png",
     "user_avatar": "get_profile_picture",
     "show_sidebar": True,
     "show_ui_builder": False,
