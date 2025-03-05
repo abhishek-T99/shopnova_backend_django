@@ -719,7 +719,7 @@ class OrderItemDetailAPIView(generics.RetrieveUpdateAPIView):
             html_body = render_to_string("email/tracking_id_added.html", merge_data)
 
             msg = EmailMultiAlternatives(
-                subject=subject, from_email=settings.FROM_EMAIL, to=[instance.order.email], body=text_body
+                subject=subject, from_email=settings.SENDER_EMAIL, to=[instance.order.email], body=text_body
             )
             msg.attach_alternative(html_body, "text/html")
             msg.send()
