@@ -6,6 +6,14 @@ A robust and scalable E-Commerce application backend API built with Django and D
 
 ---
 
+### Admin Panel
+![Project Screenshot](screenshots/admin.gif)
+
+### APIs List
+![Project Screenshot](screenshots/api-list.gif)
+
+---
+
 ## Site URL: 
 
 ```bash
