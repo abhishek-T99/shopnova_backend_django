@@ -14,12 +14,9 @@ from userauths.models import Profile, User
 from userauths.serializers import MyTokenObtainPairSerializer, ProfileSerializer, RegisterSerializer, UserSerializer
 
 
-# This is a DRF view defined as a Python function using the @api_view decorator.
 @api_view(["GET"])
 def getRoutes(request):
-    # It defines a list of API routes that can be accessed.
     routes = ["/api/token/", "/api/register/", "/api/token/refresh/", "/api/test/"]
-    # It returns a DRF Response object containing the list of routes.
     return Response(routes)
 
 
@@ -60,11 +57,9 @@ class PasswordEmailVerify(generics.RetrieveAPIView):
             user.otp = generate_numeric_otp()
             uidb64 = user.pk
 
-            # Generate a token and include it in the reset link sent via email
             refresh = RefreshToken.for_user(user)
             reset_token = str(refresh.access_token)
 
-            # Store the reset_token in the user model for later verification
             user.reset_token = reset_token
             user.save()
 
@@ -99,30 +94,24 @@ class PasswordChangeView(generics.CreateAPIView):
             reset_token = payload.get("reset_token")
             password = payload.get("password")
 
-            # Validate if all required fields are present
             if not all([otp, uidb64, reset_token, password]):
                 return Response(
                     {"error": "All fields (otp, uidb64, reset_token, password) are required."},
                     status=status.HTTP_400_BAD_REQUEST,
                 )
 
-            # Ensure uidb64 is an integer
             try:
                 uidb64 = int(uidb64)
             except ValueError:
                 return Response({"error": "Invalid user ID."}, status=status.HTTP_400_BAD_REQUEST)
 
-            # Fetch user
             try:
                 user = User.objects.get(id=uidb64, otp=otp)
             except ObjectDoesNotExist:
                 return Response({"error": "Invalid OTP or User ID."}, status=status.HTTP_400_BAD_REQUEST)
-
-            # Validate reset token
             if user.reset_token != reset_token:
                 return Response({"error": "Invalid reset token."}, status=status.HTTP_400_BAD_REQUEST)
 
-            # Update password
             user.set_password(password)
             user.otp = ""
             user.reset_token = ""

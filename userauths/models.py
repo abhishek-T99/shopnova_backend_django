@@ -25,9 +25,6 @@ def user_directory_path(instance, filename):
         filename = "%s.%s" % (user.id, ext)
         return "user_{0}/{1}".format(user.id, filename)
     else:
-        # Handle the case when user is None
-        # You can return a default path or raise an exception, depending on your requirements.
-        # For example, return a path with 'unknown_user' as the user ID:
         ext = filename.split(".")[-1]
         filename = "%s.%s" % ("file", ext)
         return "user_{0}/{1}".format("file", filename)
@@ -76,7 +73,6 @@ class Profile(models.Model):
     state = models.CharField(max_length=500, null=True, blank=True)
     address = models.CharField(max_length=1000, null=True, blank=True)
     newsletter = models.BooleanField(default=False)
-    # wishlist = models.ManyToManyField("store.Product", blank=True)
     type = models.CharField(max_length=500, choices=GENDER, null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     pid = ShortUUIDField(unique=True, length=10, max_length=20, alphabet="abcdefghijklmnopqrstuvxyz")
