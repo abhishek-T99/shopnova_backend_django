@@ -657,6 +657,7 @@ class Coupon(models.Model):
 
     class Meta:
         ordering = ["-id"]
+        unique_together = ("vendor", "code")
 
 
 class CouponUsers(models.Model):

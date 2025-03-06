@@ -454,20 +454,31 @@ class CouponCreateAPIView(generics.CreateAPIView):
     def create(self, request, *args, **kwargs):
         payload = request.data
 
-        vendor_id = payload["vendor_id"]
-        code = payload["code"]
-        discount = payload["discount"]
-        active = payload["active"]
+        vendor_id = payload.get("vendor_id")
+        code = payload.get("code")
+        discount = payload.get("discount")
+        active = payload.get("active", "false").lower() == "true"
 
-        print("vendor_id ======", vendor_id)
-        print("code ======", code)
-        print("discount ======", discount)
-        print("active ======", active)
+        if not vendor_id or not code or discount is None:
+            return Response({"error": "Missing required fields."}, status=status.HTTP_400_BAD_REQUEST)
 
-        vendor = Vendor.objects.get(id=vendor_id)
-        Coupon.objects.create(vendor=vendor, code=code, discount=discount, active=(active.lower() == "true"))
+        try:
+            vendor = Vendor.objects.get(id=vendor_id)
+        except Vendor.DoesNotExist:
+            return Response({"error": "Vendor not found."}, status=status.HTTP_404_NOT_FOUND)
 
-        return Response({"message": "Coupon Created Successfully."}, status=status.HTTP_201_CREATED)
+        # Check if coupon with the same code exists for this vendor
+        if Coupon.objects.filter(vendor=vendor, code=code).exists():
+            return Response(
+                {"error": "Coupon code already exists for this vendor."}, status=status.HTTP_400_BAD_REQUEST
+            )
+
+        # Create coupon
+        coupon = Coupon.objects.create(vendor=vendor, code=code, discount=discount, active=active)
+
+        return Response(
+            {"message": "Coupon Created Successfully.", "coupon_id": coupon.id}, status=status.HTTP_201_CREATED
+        )
 
 
 class CouponDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
