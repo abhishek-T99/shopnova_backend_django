@@ -310,8 +310,6 @@ class CreateOrderView(generics.CreateAPIView):
         cart_id = payload["cart_id"]
         user_id = payload["user_id"]
 
-        print("user_id ===============", user_id)
-
         if user_id != 0:
             user = User.objects.filter(id=user_id).first()
         else:
@@ -398,8 +396,6 @@ class CouponApiView(generics.CreateAPIView):
 
         order_oid = payload["order_oid"]
         coupon_code = payload["coupon_code"]
-        print("order_oid =======", order_oid)
-        print("coupon_code =======", coupon_code)
 
         order = CartOrder.objects.get(oid=order_oid)
         coupon = Coupon.objects.filter(code__iexact=coupon_code, active=True).first()
@@ -408,7 +404,6 @@ class CouponApiView(generics.CreateAPIView):
             order_items = CartOrderItem.objects.filter(order=order, vendor=coupon.vendor)
             if order_items:
                 for i in order_items:
-                    print("order_items =====", i.product.title)
                     if coupon not in i.coupon.all():
                         discount = i.total * coupon.discount / 100
 
@@ -481,7 +476,6 @@ def get_access_token(client_id, secret_key):
     response = requests.post(token_url, data=data, auth=auth)
 
     if response.status_code == 200:
-        print("access_token ====", response.json()["access_token"])
         return response.json()["access_token"]
     else:
         raise Exception(f"Failed to get access token from PayPal. Status code: {response.status_code}")
@@ -651,7 +645,6 @@ class SearchProductsAPIView(generics.ListAPIView):
 
     def get_queryset(self):
         query = self.request.GET.get("query")
-        print("query =======", query)
 
         products = Product.objects.filter(status="published", title__icontains=query)
         return products

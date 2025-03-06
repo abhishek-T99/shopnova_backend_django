@@ -51,8 +51,6 @@ class PasswordEmailVerify(generics.RetrieveAPIView):
         email = self.kwargs["email"]
         user = User.objects.get(email=email)
 
-        print(user)
-
         if user:
             user.otp = generate_numeric_otp()
             uidb64 = user.pk

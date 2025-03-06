@@ -197,12 +197,6 @@ class ProductCreateView(generics.CreateAPIView):
                 image = value
                 gallery_data.append({"image": image})
 
-        # Log or print the data for debugging
-        print("specifications_data:", specifications_data)
-        print("colors_data:", colors_data)
-        print("sizes_data:", sizes_data)
-        print("gallery_data:", gallery_data)
-
         # Save nested serializers with the product instance
         self.save_nested_data(product_instance, SpecificationSerializer, specifications_data)
         self.save_nested_data(product_instance, ColorSerializer, colors_data)
@@ -285,12 +279,6 @@ class ProductUpdateAPIView(generics.RetrieveUpdateAPIView):
                 image = value
                 gallery_data.append({"image": image})
 
-        # Log or print the data for debugging
-        print("specifications_data:", specifications_data)
-        print("colors_data:", colors_data)
-        print("sizes_data:", sizes_data)
-        print("gallery_data:", gallery_data)
-
         # Save nested serializers with the product instance
         self.save_nested_data(product, SpecificationSerializer, specifications_data)
         self.save_nested_data(product, ColorSerializer, colors_data)
@@ -326,8 +314,6 @@ class FilterProductsAPIView(generics.ListAPIView):
     def get_queryset(self):
         vendor_id = self.kwargs["vendor_id"]
         filter = self.request.GET.get("filter")
-
-        print("filter =======", filter)
 
         vendor = Vendor.objects.get(id=vendor_id)
         if filter == "published":
