@@ -123,7 +123,7 @@ class CartApiView(generics.ListCreateAPIView):
             cart.sub_total = Decimal(price) * int(qty)
             cart.shipping_amount = Decimal(shipping_amount) * int(qty)
             cart.size = size
-            cart.tax_fee = int(qty) * Decimal(tax_rate)
+            cart.tax_fee = int(cart.sub_total) * Decimal(tax_rate)
             cart.color = color
             cart.country = country
             cart.cart_id = cart_id
@@ -149,7 +149,7 @@ class CartApiView(generics.ListCreateAPIView):
             cart.sub_total = Decimal(price) * int(qty)
             cart.shipping_amount = Decimal(shipping_amount) * int(qty)
             cart.size = size
-            cart.tax_fee = int(qty) * Decimal(tax_rate)
+            cart.tax_fee = int(cart.sub_total) * Decimal(tax_rate)
             cart.color = color
             cart.country = country
             cart.cart_id = cart_id
