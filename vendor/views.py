@@ -513,7 +513,7 @@ class NotificationUnSeenListAPIView(generics.ListAPIView):
     def get_queryset(self):
         vendor_id = self.kwargs["vendor_id"]
         vendor = Vendor.objects.get(id=vendor_id)
-        notifications = Notification.objects.filter(vendor=vendor, seen=False).order_by("seen")
+        notifications = Notification.objects.filter(vendor=vendor, seen=False).order_by("seen", "-date")
         return notifications
 
 
@@ -525,7 +525,7 @@ class NotificationSeenListAPIView(generics.ListAPIView):
     def get_queryset(self):
         vendor_id = self.kwargs["vendor_id"]
         vendor = Vendor.objects.get(id=vendor_id)
-        notifications = Notification.objects.filter(vendor=vendor, seen=True).order_by("seen")
+        notifications = Notification.objects.filter(vendor=vendor, seen=True).order_by("seen", "-date")
         return notifications
 
 

@@ -80,7 +80,7 @@ class CustomerNotificationView(generics.ListAPIView):
     def get_queryset(self):
         user_id = self.kwargs["user_id"]
         user = User.objects.get(id=user_id)
-        return Notification.objects.filter(user=user)
+        return Notification.objects.filter(user=user).order_by("-date")
 
 
 class CustomerUpdateView(generics.RetrieveUpdateAPIView):
