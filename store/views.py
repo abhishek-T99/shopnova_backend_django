@@ -120,10 +120,10 @@ class CartApiView(generics.ListCreateAPIView):
             cart.user = user
             cart.qty = qty
             cart.price = price
-            cart.sub_total = Decimal(price) * int(qty)
-            cart.shipping_amount = Decimal(shipping_amount) * int(qty)
+            cart.sub_total = round(Decimal(price) * int(qty), 2)
+            cart.shipping_amount = round(Decimal(shipping_amount) * int(qty), 2)
             cart.size = size
-            cart.tax_fee = int(cart.sub_total) * Decimal(tax_rate)
+            cart.tax_fee = round(Decimal(cart.sub_total) * Decimal(tax_rate), 2)
             cart.color = color
             cart.country = country
             cart.cart_id = cart_id
@@ -132,9 +132,9 @@ class CartApiView(generics.ListCreateAPIView):
 
             if config_settings.service_fee_charge_type == "percentage":
                 service_fee_percentage = config_settings.service_fee_percentage / 100
-                cart.service_fee = Decimal(service_fee_percentage) * cart.sub_total
+                cart.service_fee = round(Decimal(service_fee_percentage) * cart.sub_total, 2)
             else:
-                cart.service_fee = config_settings.service_fee_flat_rate
+                cart.service_fee = round(config_settings.service_fee_flat_rate, 2)
 
             cart.total = cart.sub_total + cart.shipping_amount + cart.service_fee + cart.tax_fee
             cart.save()
@@ -146,10 +146,10 @@ class CartApiView(generics.ListCreateAPIView):
             cart.user = user
             cart.qty = qty
             cart.price = price
-            cart.sub_total = Decimal(price) * int(qty)
-            cart.shipping_amount = Decimal(shipping_amount) * int(qty)
+            cart.sub_total = round(Decimal(price) * int(qty), 2)
+            cart.shipping_amount = round(Decimal(shipping_amount) * int(qty), 2)
             cart.size = size
-            cart.tax_fee = int(cart.sub_total) * Decimal(tax_rate)
+            cart.tax_fee = round(Decimal(cart.sub_total) * Decimal(tax_rate), 2)
             cart.color = color
             cart.country = country
             cart.cart_id = cart_id
@@ -158,9 +158,9 @@ class CartApiView(generics.ListCreateAPIView):
 
             if config_settings.service_fee_charge_type == "percentage":
                 service_fee_percentage = config_settings.service_fee_percentage / 100
-                cart.service_fee = Decimal(service_fee_percentage) * cart.sub_total
+                cart.service_fee = round(Decimal(service_fee_percentage) * cart.sub_total, 2)
             else:
-                cart.service_fee = config_settings.service_fee_flat_rate
+                cart.service_fee = round(config_settings.service_fee_flat_rate, 2)
 
             cart.total = cart.sub_total + cart.shipping_amount + cart.service_fee + cart.tax_fee
             cart.save()

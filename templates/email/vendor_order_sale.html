@@ -193,7 +193,7 @@
                                                                         <tr>
                                                                             <td width="" style="padding: 0px 40px;" class="m_1429413934428186810mlContentOuter">
                                                                                 <p style="font-family: 'Inter', sans-serif; color: #111111; font-size: 14px; line-height: 150%; margin: 0 0 10px 0; font-weight: 400; margin-bottom: 0;">
-                                                                                    Thanks for paternering with Desphixs <br> The order ID is <span style="line-height: 150%; color: rgb(151, 88, 138);">#{{ order.oid }}</span>.
+                                                                                    Thanks for paternering with ShopNova <br> The order ID is <span style="line-height: 150%; color: rgb(151, 88, 138);">#{{ order.oid }}</span>.
                                                                                 </p>
                                                                             </td>
                                                                         </tr>
@@ -363,7 +363,7 @@
                                                                                                         <p style="font-family: 'Inter', sans-serif; color: #97588a; font-size: 14px; word-break: break-word; margin: 0px; line-height: 150%;">{{o.qty}}</p>
                                                                                                     </td>
                                                                                                     <td align="left" width="33.333333333333336%" style="padding-top: 10px; padding-bottom: 10px; padding-left: 10px; padding-right: 10px; border-color: #cccccc;" >
-                                                                                                        <p style="font-family: 'Inter', sans-serif; color: #97588a; font-size: 14px; word-break: break-word; margin: 0px; line-height: 150%;">${{o.sub_total}}</p>
+                                                                                                        <p style="font-family: 'Inter', sans-serif; color: #97588a; font-size: 14px; word-break: break-word; margin: 0px; line-height: 150%;">NRs. {{o.sub_total}}</p>
                                                                                                     </td>
                                                                                                 </tr>
                                                                                             {% endfor %}
@@ -441,7 +441,7 @@
                                                                                                 <th align="left" bgcolor="#FFF" valign="middle" style="padding-top: 10px; padding-bottom: 10px; padding-left: 10px; padding-right: 10px; border-color: #cccccc;" >
                                                                                                     <h1 style=" font-family: 'Inter', sans-serif; color: #111111; font-size: 14px; font-weight: 400; word-break: break-word; line-height: 125%; margin: 0px; " >
                                                                                                         <span style="line-height: 125%; margin: 0px; color: rgb(151, 88, 138);">
-                                                                                                            ${{ order.sub_total }}
+                                                                                                            NRs. {{ order.sub_total }}
                                                                                                         </span>
                                                                                                     </h1>
                                                                                                 </th>
@@ -456,7 +456,7 @@
                                                                                                 <th align="left" bgcolor="#FFF" valign="middle" style="padding-top: 10px; padding-bottom: 10px; padding-left: 10px; padding-right: 10px; border-color: #cccccc;" >
                                                                                                     <h1 style=" font-family: 'Inter', sans-serif; color: #111111; font-size: 14px; font-weight: 400; word-break: break-word; line-height: 125%; margin: 0px; " >
                                                                                                         <span style="line-height: 125%; margin: 0px; color: rgb(151, 88, 138);">
-                                                                                                            ${{ order.shipping_amount }}
+                                                                                                            NRs. {{ order.shipping_amount }}
                                                                                                         </span>
                                                                                                     </h1>
                                                                                                 </th>
@@ -471,7 +471,7 @@
                                                                                                 <th align="left" bgcolor="#FFF" valign="middle" style="padding-top: 10px; padding-bottom: 10px; padding-left: 10px; padding-right: 10px; border-color: #cccccc;" >
                                                                                                     <h1 style=" font-family: 'Inter', sans-serif; color: #111111; font-size: 14px; font-weight: 400; word-break: break-word; line-height: 125%; margin: 0px; " >
                                                                                                         <span style="line-height: 125%; margin: 0px; color: rgb(151, 88, 138);">
-                                                                                                            ${{ order.tax_fee }}
+                                                                                                            NRs. {{ order.tax_fee }}
                                                                                                         </span>
                                                                                                     </h1>
                                                                                                 </th>
@@ -486,7 +486,7 @@
                                                                                                 <th align="left" bgcolor="#FFF" valign="middle" style="padding-top: 10px; padding-bottom: 10px; padding-left: 10px; padding-right: 10px; border-color: #cccccc;" >
                                                                                                     <h1 style=" font-family: 'Inter', sans-serif; color: #111111; font-size: 14px; font-weight: 400; word-break: break-word; line-height: 125%; margin: 0px; " >
                                                                                                         <span style="line-height: 125%; margin: 0px; color: rgb(151, 88, 138);">
-                                                                                                            ${{ order.service_fee }}
+                                                                                                            NRs. {{ order.service_fee }}
                                                                                                         </span>
                                                                                                     </h1>
                                                                                                 </th>
@@ -501,7 +501,7 @@
                                                                                                 <th align="left" bgcolor="#FFF" valign="middle" style="padding-top: 10px; padding-bottom: 10px; padding-left: 10px; padding-right: 10px; border-color: #cccccc;" >
                                                                                                     <h1 style=" font-family: 'Inter', sans-serif; color: #111111; font-size: 14px; font-weight: 400; word-break: break-word; line-height: 125%; margin: 0px; " >
                                                                                                         <span style="line-height: 125%; margin: 0px; color: rgb(151, 88, 138);">
-                                                                                                            ${{ order.total }}
+                                                                                                            NRs. {{ order.total }}
                                                                                                         </span>
                                                                                                     </h1>
                                                                                                 </th>
@@ -751,7 +751,7 @@
                                                         <tr>
                                                             <td style="padding: 0px 0px;" align="left">
                                                                 <p style="font-family: 'Inter', sans-serif; color: #a2a9b0; font-size: 14px; line-height: 150%; margin: 0 0 10px 0; font-weight: 400; margin-bottom: 0;">
-                                                                    <span style="color: rgb(255, 255, 255);"></span><span style="color: rgb(162, 169, 176);">© 2023 - Till Date | Desphixs. All rights reserved.</span>
+                                                                    <span style="color: rgb(255, 255, 255);"></span><span style="color: rgb(162, 169, 176);">© 2024 - Till Date | ShopNova. All rights reserved.</span>
                                                                 </p>
                                                             </td>
                                                         </tr>
