@@ -501,6 +501,15 @@ class PaymentSuccessView(generics.CreateAPIView):
         order = CartOrder.objects.get(oid=order_oid)
         order_items = CartOrderItem.objects.filter(order=order)
 
+        def clear_cart():
+            """Function to clear the cart after successful checkout"""
+            if order.buyer:
+                try:
+                    cart = Cart.objects.filter(user_id=order.buyer.id)
+                    cart.delete()
+                except Cart.DoesNotExist:
+                    pass
+
         if payapl_order_id != "null":
             paypal_api_url = f"https://api-m.sandbox.paypal.com/v2/checkout/orders/{payapl_order_id}"
             headers = {
@@ -516,6 +525,7 @@ class PaymentSuccessView(generics.CreateAPIView):
                     if order.payment_status == "processing":
                         order.payment_status = "paid"
                         order.save()
+                        clear_cart()
                         if order.buyer is not None:
                             send_notification(user=order.buyer, order=order)
 
@@ -565,6 +575,8 @@ class PaymentSuccessView(generics.CreateAPIView):
                 if order.payment_status == "processing":
                     order.payment_status = "paid"
                     order.save()
+
+                    clear_cart()
 
                     if order.buyer is not None:
                         send_notification(user=order.buyer, order=order)
