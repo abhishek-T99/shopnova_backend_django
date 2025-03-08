@@ -8,6 +8,7 @@ cffi==1.16.0
 cfgv==3.4.0
 charset-normalizer==3.3.2
 click==8.1.8
+coverage==7.6.12
 cryptography==41.0.7
 decorator==5.2.1
 diff-match-patch==20241021
@@ -28,9 +29,12 @@ executing==2.2.0
 filelock==3.17.0
 flake8==7.1.2
 gunicorn==21.2.0
+h11==0.14.0
 identify==2.6.8
 idna==3.6
 inflection==0.5.1
+iniconfig==2.0.0
+ipdb==0.13.13
 ipython==8.32.0
 isort==6.0.0
 jedi==0.19.2
@@ -46,9 +50,10 @@ pathspec==0.12.1
 pexpect==4.9.0
 pillow==11.1.0
 platformdirs==4.3.6
+pluggy==1.5.0
 pre_commit==4.1.0
 prompt_toolkit==3.0.50
-psycopg2-binary==2.9.9
+psycopg2==2.9.9
 ptyprocess==0.7.0
 pure_eval==0.2.3
 pycodestyle==2.12.1
@@ -56,6 +61,9 @@ pycparser==2.21
 pyflakes==3.2.0
 Pygments==2.19.1
 PyJWT==2.6.0
+pytest==8.3.5
+pytest-cov==6.0.0
+pytest-django==4.10.0
 python-dateutil==2.8.2
 python-dotenv==1.0.0
 pytz==2025.1
@@ -75,6 +83,7 @@ typing_extensions==4.9.0
 tzdata==2023.3
 uritemplate==4.1.1
 urllib3==1.26.18
+uvicorn==0.34.0
 virtualenv==20.29.2
 wcwidth==0.2.13
 wheel==0.45.1

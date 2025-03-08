@@ -7,7 +7,7 @@ from userauths import views as userauths_views
 from vendor import views as vendor_views
 
 urlpatterns = [
-    path("", userauths_views.getRoutes),
+    path("", userauths_views.getRoutes, name="get_routes"),
     # Userauths API Endpoints
     path("user/token/", userauths_views.MyTokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("user/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),

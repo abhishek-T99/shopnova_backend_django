@@ -25,6 +25,15 @@ def create_profile(create_user):
     def _create_profile(user=None):
         if not user:
             user = create_user()
-        return Profile.objects.create(user=user, full_name="Test User", bio="Test Bio")
+
+        # Check if a Profile already exists for the User
+        profile, created = Profile.objects.get_or_create(
+            user=user,
+            defaults={
+                "full_name": "Test User",
+                "about": "Test About",
+            },
+        )
+        return profile
 
     return _create_profile
