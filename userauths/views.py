@@ -12,6 +12,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from userauths.helpers import generate_numeric_otp
 from userauths.models import Profile, User
 from userauths.serializers import MyTokenObtainPairSerializer, ProfileSerializer, RegisterSerializer, UserSerializer
+from .tasks import send_password_reset_email
 
 
 @api_view(["GET"])
@@ -61,21 +62,8 @@ class PasswordEmailVerify(generics.RetrieveAPIView):
             user.reset_token = reset_token
             user.save()
 
-            link = f"{settings.SITE_URL}/create-new-password?otp={user.otp}&uidb64={uidb64}&reset_token={reset_token}"
+            send_password_reset_email.apply_async(args=[user.id, user.otp, uidb64, reset_token])
 
-            merge_data = {
-                "link": link,
-                "username": user.username,
-            }
-            subject = "Password Reset Request"
-            text_body = render_to_string("email/password_reset.txt", merge_data)
-            html_body = render_to_string("email/password_reset.html", merge_data)
-
-            msg = EmailMultiAlternatives(
-                subject=subject, from_email=settings.SENDER_EMAIL, to=[user.email], body=text_body
-            )
-            msg.attach_alternative(html_body, "text/html")
-            msg.send()
         return user
 
 

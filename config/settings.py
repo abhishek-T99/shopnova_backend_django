@@ -188,6 +188,15 @@ PAYPAL_SECRET_ID = env("PAYPAL_SECRET_ID")
 
 REST_FRAMEWORK = {"DEFAULT_AUTHENTICATION_CLASSES": ("rest_framework_simplejwt.authentication.JWTAuthentication",)}
 
+# Celery configurations
+CELERY_BROKER_URL = env("CELERY_BROKER_URL")
+CELERY_RESULT_BACKEND = env("CELERY_RESULT_BACKEND")
+CELERY_ACCEPT_CONTENT = ["json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"
+CELERY_TIMEZONE = "UTC"
+CELERY_ENABLE_UTC = True
+
 # Brevo Email Settings
 EMAIL_BACKEND = "anymail.backends.sendinblue.EmailBackend"
 ANYMAIL = {
