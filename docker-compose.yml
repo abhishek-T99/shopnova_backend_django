@@ -3,6 +3,7 @@ services:
     build:
       context: .
     image: shopnova_backend
+    container_name: shopnova_backend
     ports:
       - "8000:8000"
     env_file:
@@ -17,6 +18,8 @@ services:
     command: >
       sh -c "python manage.py migrate &&
              python manage.py runserver 0.0.0.0:8000"
+    networks:
+      - shopnova_network
     depends_on:
       - db
     
@@ -30,7 +33,13 @@ services:
       POSTGRES_DB: shopnova_db
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+    networks:
+      - shopnova_network
 
 volumes:
   shopnova-db-data:
   shopnova-static-data:
+
+networks:
+  shopnova_network:
+    external: true
